@@ -16,10 +16,7 @@ Example:
 // create a shortcut for node
 var win_shortcut = require('node-win-shortcut');
 win_shortcut.createShortcut(process.execPath, 'node', 'node_app_id');
+```
 
 License:
 MIT
-
-Author:
-nadavbar
-```

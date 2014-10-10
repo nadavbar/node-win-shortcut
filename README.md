@@ -1,7 +1,7 @@
 node-win-shortcut
 =================
 
-Node.js native module for creating shortcuts (including app-ids) in windows > 8.
+Node.js native module for creating shortcuts (including app-ids) in windows 8 and above.
 The native module code which creates the shortcuts is based on the samples from: http://msdn.microsoft.com/en-us/library/windows/desktop/hh802762
 
 The app-id which will be created with the shortcut can be used to show desktop notificatons with 
@@ -14,7 +14,7 @@ In order to create a shortcut, require this module, and call the **createShortcu
     2. The name of the shortcut. 
     3. The app id that the shortcut will be created with. (a string of your choice)
 
-Example:
+Here's an example:
 ```javascript
 // create a shortcut for node
 var win_shortcut = require('node-win-shortcut');

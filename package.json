@@ -1,6 +1,6 @@
 {
   "name": "node-win-shortcut",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Create windows shortcuts using node.js",
   "main": "index.js",
   "dependencies": {},
@@ -8,8 +8,17 @@
   "keywords": [
     "shortcut",
     "windows",
-    "winrt"
+    "winrt",
+    "appid"
   ],
-  "author": "nadavbar",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nadavbar/node-win-shortcut.git"
+  },
+  "homepage": "https://github.com/nadavbar/node-win-shortcut",
+  "author": "nadavbar <nadavbar@gmail.com>",
   "license": "MIT"
 }

@@ -3,7 +3,9 @@
   "version": "0.0.2",
   "description": "Create windows shortcuts using node.js",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "nan": "^2.4.0"
+  },
   "devDependencies": {},
   "keywords": [
     "shortcut",
@@ -12,6 +14,8 @@
     "appid"
   ],
   "scripts": {
+    "install": "node-gyp rebuild",
+    "build": "node-gyp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

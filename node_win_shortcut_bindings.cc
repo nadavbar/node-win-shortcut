@@ -1,7 +1,6 @@
 #define NTDDI_VERSION 0x06010000
 
-#include <node.h>
-#include <v8.h>
+#include "nan.h"
 
 #include <Windows.h>
 #include <sal.h>
@@ -111,38 +110,34 @@ HRESULT TryCreateShortcut(Handle<Value> exePath, Handle<Value> shortcutName, Han
   return hr;
 }
 
-Handle<Value> CreateShortcut(const Arguments& args)
+NAN_METHOD(CreateShortcut)
 {
-  HandleScope scope;
+  Nan::HandleScope scope;
 
-  if (args.Length() < 3 || !args[0]->IsString() || !args[1]->IsString() || !args[2]->IsString())
+  if (info.Length() < 3 || !info[0]->IsString() || !info[1]->IsString() || !info[2]->IsString())
   {
-    ThrowException(Exception::Error(String::New("Bad usage, expected arguments are: path to exe[string], shortcut name[string], app id [string]")));
-    return scope.Close(Undefined());
+    Nan::ThrowTypeError("Bad usage, expected arguments are: path to exe[string], shortcut name[string], app id [string]");
+    return;
   }
 
   HRESULT hr = CoInitializeEx(NULL, COINITBASE_MULTITHREADED);
 
   if (SUCCEEDED(hr))
   {
-    hr = TryCreateShortcut(args[0], args[1], args[2]);
+    hr = TryCreateShortcut(info[0], info[1], info[2]);
     CoUninitialize();
   }
 
   if (!SUCCEEDED(hr))
   {
-    ThrowException(Exception::Error(String::Concat(
-      String::New("Failed to create shortcut, HRESULT:"),
-      Integer::New(hr)->ToString())));
-    return scope.Close(Undefined());
+    Nan::ThrowError(Nan::New(hr)->ToString());
+    return;
   }
-
-  return scope.Close(Undefined());
 }
 
-void init(Handle<Object> exports) {
-  exports->Set(String::NewSymbol("createShortcut"),
-    FunctionTemplate::New(CreateShortcut)->GetFunction());
+void Init(Local<Object> exports) {
+  exports->Set(Nan::New("createShortcut").ToLocalChecked(),
+               Nan::New<FunctionTemplate>(CreateShortcut)->GetFunction());
 }
 
-NODE_MODULE(node_win_shortcut_bindings, init)
+NODE_MODULE(node_win_shortcut_bindings, Init)

@@ -13,6 +13,9 @@
     "winrt",
     "appid"
   ],
+  "os": [
+    "win32"
+  ],
   "scripts": {
     "install": "node-gyp rebuild",
     "build": "node-gyp build",
